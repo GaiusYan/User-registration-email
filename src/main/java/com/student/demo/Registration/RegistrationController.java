@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 @RequestMapping(path = "api/v1/registration")
 @AllArgsConstructor
 public class RegistrationController {
+    
+    private RegistrationService registrationService;
 
     public String register(@RequestBody RegistrationRequest request){
         return registrationService.register(request);

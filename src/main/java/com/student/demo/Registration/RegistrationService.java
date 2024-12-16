@@ -1,5 +1,10 @@
 package com.student.demo.Registration;
 
-public class RegistrationService {
+import org.springframework.stereotype.Service;
 
+@Service   
+public class RegistrationService {
+    public String register(RegistrationRequest request){
+        return "works";
+    }
 }
