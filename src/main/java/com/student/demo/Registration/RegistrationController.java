@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -17,5 +18,10 @@ public class RegistrationController {
     @PostMapping
     public String register(@RequestBody RegistrationRequest request){
         return registrationService.register(request);
+    }
+
+    @PostMapping("confirm")
+    public String confirm(@PathParam("token") String token){
+        return registrationService.confirmToken(token);
     }
 }
