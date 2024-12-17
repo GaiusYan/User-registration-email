@@ -24,7 +24,7 @@ import lombok.AllArgsConstructor;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    private final JwtFilter jwtFilter;
+    /* private final JwtFilter jwtFilter; */
     private UserDetailsService userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Bean
@@ -34,7 +34,7 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(
                 authorize -> 
                     authorize
-                        .requestMatchers("api/v*/registration/*")
+                        .requestMatchers("api/v*/registration")
                         .permitAll()
                     .anyRequest()
                     .authenticated()
@@ -43,13 +43,13 @@ public class WebSecurityConfig {
                 httpSecuritySessionManagerConfigurer ->
                     httpSecuritySessionManagerConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             ) 
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+            /* .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) */
             .authenticationProvider(this.authenticationProvider())
             .build();       
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration){
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
         return authenticationConfiguration.getAuthenticationManager();
     }
 
